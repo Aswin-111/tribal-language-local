@@ -44,48 +44,126 @@ export default function Home() {
 
 
     
+//     (async function () {
+      
+//       const response = await axios.get(process.env.NEXT_PUBLIC_BASE_URL)
+//       const dt = response.data
 
-    (async function () {
-      // const response = await axios.get('https://aksharammuseum.com/api/tribalData/getDetailsByDataType?dType=2')
-      // const data = response.data
-      const fildata = data.map(i => {
+      
 
 
-        if(i.title && i != undefined){
-        return {
-          title: i.title.trim().split("-"),
-          commonId: i.tribalCommonId, fileUrl: i.tribalVideoList ? i.tribalVideoList[0].fileUrl : null, description: i.description
-        }
-      }
+      
+      
 
-      })
-      // console.log(fildata) 
-      let fil = fildata.map(i => {
-        try{
-        // console.log(i)
-// console.log(i && i.title != undefined)
-        if(i && i.title != undefined){
-        return { title: i.title.length >= 2 ? [ i.title[0].toLowerCase().trim(), i.title[1].toLowerCase().trim()] : [i.title[0].toLowerCase().trim()], commonId: i.commonId, fileUrl: i.fileUrl, description: i.description }
-        }
-        }
+      
 
-        catch(err){
-          console.log(err)
-        }
+
+//       console.log(dt,'dt')
+//       const fildata = dt.map(i => {
+
+
+        
+
+        
+
+
+
+//         if(i.title && i != undefined){
+//         return {
+//           title: i.title.trim().split("-"),
+//           commonId: i.tribalCommonId, fileUrl: i.tribalVideoList ? i.tribalVideoList[0].fileUrl : null, description: i.description
+//         }
+//       }
+
+//       })
+//       // console.log(fildata) 
+//       let fil = fildata.map(i => {
+//         try{
+//         // console.log(i)
+// // console.log(i && i.title != undefined)
+//         if(i && i.title != undefined){
+//         return { title: i.title.length >= 2 ? [ i.title[0].toLowerCase().trim(), i.title[1].toLowerCase().trim()] : [i.title[0].toLowerCase().trim()], commonId: i.commonId, fileUrl: i.fileUrl, description: i.description }
+//         }
+//         }
+
+//         catch(err){
+//           console.log(err)
+//         }
     
-    }
-    );
+//     }
+//     );
 
-     const filcp = fil.filter(i => i !== undefined);
+//      const filcp = fil.filter(i => i !== undefined);
 
      
-     const kannurdata = filcp.map(i=>i.title[0] === "കണ്ണൂർ")
+//      const kannurdata = filcp.map(i=>i.title[0] === "കണ്ണൂർ")
 
-      setAreaData(filcp)
+//       setAreaData(filcp)
 
-      console.log(kannurdata,'fil')
+//       console.log(kannurdata,'fil')
 
-    })()
+//     })()
+
+(async function () {
+      
+  const response = await axios.get(process.env.NEXT_PUBLIC_BASE_URL)
+  const dt = response.data
+
+  
+
+
+  
+  
+
+  
+
+
+  console.log(dt,'dt')
+  const fildata = dt.map(i => {
+
+
+    
+
+    
+
+
+
+    if(i.title && i != undefined){
+    return {
+      title: i.title.trim().split("-"),
+      commonId: i.tribalCommonId, fileUrl: i.tribalVideoList ? `${process.env.NEXT_PUBLIC_VIDEO_URL}/${i.tribalVideoList[0]
+        .fileName.split(" ").join("%20")}` : null, description: i.description
+    }
+  }
+
+  })
+  // console.log(fildata) 
+  let fil = fildata.map(i => {
+    try{
+    // console.log(i)
+// console.log(i && i.title != undefined)
+    if(i && i.title != undefined){
+    return { title: i.title.length >= 2 ? [ i.title[0].toLowerCase().trim(), i.title[1].toLowerCase().trim()] : [i.title[0].toLowerCase().trim()], commonId: i.commonId, fileUrl: i.fileUrl, description: i.description }
+    }
+    }
+
+    catch(err){
+      console.log(err)
+    }
+
+}
+);
+
+ const filcp = fil.filter(i => i !== undefined);
+
+ 
+ const kannurdata = filcp.map(i=>i.title[0] === "കണ്ണൂർ")
+
+  setAreaData(filcp)
+
+  console.log(kannurdata,'fil')
+
+})()
   }, [])
 
 
@@ -533,7 +611,7 @@ filterdata("വയനാട്",areaddata)
                     <path
                       style={{ fill: "rgb(255,244,80)", fillRule: "nonzero" }}
 
-                      onClick={() => trivandrum()}
+                      onClick={() => te()}
                       d="M634.7,744.3C633.1,743.4 632.4,743.4 630.6,743.1C629,742.9 627.6,741.9 626.5,740.9C625.1,739.6 625,737.6 623.4,737C621.8,736.4 620,736.5 618.3,736C615.9,735.3 612.7,735.6 610.8,737.2C608.9,738.8 610,741.8 609.9,744.1C609.8,745.5 610.4,747 608.1,746.3C606.3,745.8 606.3,744.1 605.1,743.2C602.9,741.5 603.1,744.2 602,744.9C601.4,745.3 600,744.8 599.3,744.9C598,745.2 598.7,745.1 597.9,746C597.3,746.7 598,747 596.5,747C595.6,747 595.5,747 594.8,746.3C593.9,745.2 593.1,743 593,741.7C592.9,740.1 593,738.3 590.7,738.7C589.2,738.9 589.1,741 587.7,741.4C586.6,741.7 585,741.3 583.9,741.2C583.8,740.2 584.3,739.3 584.2,738.4C584,737.1 582.5,735.7 581.3,735.1C579.9,734.4 578.6,735.5 577.2,734.9C575.7,734.3 576,732.4 574.4,732C573.5,731.8 570.4,732.8 570.1,733.4C569.2,735.3 572.4,735.9 573.1,736.6C573.9,737.3 573.9,739.5 573.1,740.4C571.4,742.2 565.8,740.3 563.5,740.4C563.3,741.6 562.4,744.1 561.6,745.1C560.9,746.1 559.9,747 559,747.8C559.8,748.5 560.5,749.3 561.1,750.1C561.9,751.2 562.5,752.3 563.3,753.3C564,754.2 565.5,755.7 565.4,756.9C567.3,758.5 567.8,761.2 569.2,763.2C570.5,765.2 571.9,766.1 573.9,767.6C578.6,771.2 581.7,776 585.4,780.4C586.4,781.5 587.3,782.7 588.3,783.8C589.5,785.3 590.3,787.1 591.6,788.5C592.7,789.7 593.8,790.7 594.8,791.9C595.3,792.6 597.7,794.6 597.8,795.1C598,796.5 600.1,798.7 601.1,799.7C602.3,800.9 603.3,802.3 604.5,803.5C605.4,804.5 606.1,805.4 606.9,806.5C607.8,807.7 608.7,808.2 609.8,809.2C610.8,810.1 610.3,811.6 611.4,812.3C611.9,812.6 613,812.5 613.6,812.8C614.1,813 614.6,813.4 615,813.7C616.1,814.4 617.2,815.2 618.2,816C619.1,816.7 619.6,817.6 620.4,818.3C621.4,819.1 622.4,819.8 623.4,820.7C624.2,821.4 625,822.8 626.2,822.5C626.3,821.7 625.8,820.8 626,820C626.1,819.5 626.4,819.5 626.7,819.1C626.8,818.9 627.2,818.1 627.3,818C628.6,816.6 630.3,817.9 631.8,818.1C633.1,818.2 634.1,818.3 634.9,817.2C635.4,816.5 635.9,814.8 635.9,813.9C635.9,812.5 635.1,811.9 634.2,811C633.7,810.5 632.4,809.4 632.1,808.7C631.5,807.1 633.3,806.6 633.8,805.6C634,805.2 634,804.6 634.2,804.2C634.4,803.8 634.7,803.3 634.8,802.9C635.2,801.8 634.6,800.3 635.2,799.2C635.5,798.6 635.9,798.4 636.2,797.7C636.4,797.1 636,796.8 636.4,796.3C638.2,796.3 641.4,797.4 642.1,795.2C642.5,793.8 642.3,790.6 641.8,789.3C641,789 639.6,788.9 639.6,787.9C640.8,787.8 643.1,787.6 644,788.2C644.6,788.7 644.5,789.2 645.4,789.4C646.4,789.6 646.7,789.3 647.1,788.6C648.6,785.8 649,781.8 649,778.6C649,777.3 649,776.2 648.8,775C648.6,773.9 648.6,772.7 648,771.7C647.3,770.6 646.3,770.3 645.3,769.6C644.2,768.8 643.7,767.4 642.8,766.4C642,765.4 641.6,764.4 641,763.3C640.5,762.3 639.8,761.4 639.5,760.4C639,758.8 640.2,754.9 638.3,754.5C637.2,754.2 637.9,751.8 638.4,751.3C638.9,750.7 639.8,750.8 640.3,750.3C641,749.7 640.6,749.4 641,748.7C641.4,747.9 642.1,747.8 642.6,747.3C641.6,747 640.5,746.6 639.6,746.2C637.9,745 636.2,745.2 634.7,744.3Z"
                     />
                     <path
@@ -1187,7 +1265,7 @@ filterdata("വയനാട്",areaddata)
 <div className="px-[23rem] mt-[5rem]">
             <h1 className="w-full text-[110px] py-5 bg-red-400 flex justify-center rounded-xl " onClick={()=>{
   setVideoToggle(false)
-  setShowInfo(true)
+  setShowInfo(false)
 }}>Close</h1>
 
 

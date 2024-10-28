@@ -30,7 +30,7 @@ export default function Home() {
 
   const [videotoggle, setVideoToggle] = useState(false);
   const [tribalvideourl, setTribal] = useState({file : "", desc : "" });
-  const [def, setDef] = useState(false);
+  const [type, setType] = useState("=1");
 
   useEffect(() => {
 
@@ -46,8 +46,8 @@ export default function Home() {
     
 
     (async function () {
-      // const response = await axios.get('https://aksharammuseum.com/api/tribalData/getDetailsByDataType?dType=2')
-      // const data = response.data
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}${type}`)
+      const data = response.data
       const fildata = data.map(i => {
 
 
@@ -1187,7 +1187,8 @@ filterdata("വയനാട്",areaddata)
 <div className="px-[23rem] mt-[5rem]">
             <h1 className="w-full text-[110px] py-5 bg-red-400 flex justify-center rounded-xl " onClick={()=>{
   setVideoToggle(false)
-  setShowInfo(true)
+  setShowInfo(false)
+
 }}>Close</h1>
 
 

@@ -298,7 +298,7 @@ filterdata("വയനാട്",areaddata)
           }}
           width="100%"
           version="1.1"
-          viewBox="0 0 600 723"
+          viewBox="55 0 500 700"
           xmlns="http://www.w3.org/2000/svg">
           {/* <g transform="matrix(1,0,0,1,-165,-119)" >
         <g> 

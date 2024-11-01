@@ -267,7 +267,7 @@ filterdata("വയനാട്",areaddata)
     <div className="w-screen h-screen overflow-hidden p-0 m-0 bg-dodgerblue flex justify-center bg-[url('../../public/plant.png')] bg-no-repeat bg-cover bg-center">
       {/* style = "width: 100%; margin-top: 55px; height:100vh;" */}
       <div className="w-full mt-55px h-[100vh]">
-        <div className="text-[7rem] absolute z-50 top-[5vh] w-full flex justify-center">
+        <div className="text-[3rem] absolute z-50 top-[5vh] w-full flex justify-center">
           Tribal Languages Of Kerala
         </div>
 

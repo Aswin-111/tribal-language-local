@@ -1123,6 +1123,7 @@ filterdata("വയനാട്",areaddata)
         {videotoggle && <div className="absolute z-50 top-[30rem] w-full flex flex-col items-center px-32 ">
 
 
+
       {tribalvideourl.file && <video src={tribalvideourl.file} autoPlay={true} className="w-[120rem]" />}
 
 

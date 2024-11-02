@@ -5,3 +5,10 @@
 body{
     color : white;
 }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    /* Styles for high-DPI devices */
+    body {
+        font-size: 1.5rem; /* Adjust as necessary */
+    }
+}

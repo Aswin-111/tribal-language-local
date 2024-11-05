@@ -1,4 +1,3 @@
-
 "use client"
 import axios from "axios"
 import { useEffect, useState } from "react"
@@ -268,7 +267,7 @@ filterdata("വയനാട്",areaddata)
     <div className="w-screen h-screen overflow-hidden p-0 m-0 bg-dodgerblue flex justify-center bg-[url('../../public/plant.png')] bg-no-repeat bg-cover bg-center">
       {/* style = "width: 100%; margin-top: 55px; height:100vh;" */}
       <div className="w-full mt-55px h-[100vh]">
-        <div className="text-[48px] absolute z-50 top-[5vh] w-full flex justify-center">
+        <div className="text-[100px] absolute z-50 top-[5vh] w-full flex justify-center">
           Tribal Languages Of Kerala
         </div>
 
@@ -1121,13 +1120,11 @@ filterdata("വയനാട്",areaddata)
           </g>
         </svg>
 
-        {videotoggle && <div className="absolute z-50 top-[480px] w-full flex flex-col items-center px-32 ">
+        {videotoggle && <div className="absolute z-50 top-[450px] w-full flex flex-col items-center px-32 ">
 
 
 
       {tribalvideourl.file && <video src={tribalvideourl.file} autoPlay={true} className="w-[1920px]" />}
-
-
 
 
 
@@ -1152,7 +1149,7 @@ filterdata("വയനാട്",areaddata)
 </div>
 </div>}
         {showinfo && <div className="absolute top-0 z-[70] w-full h-[100%] flex justify-center items-center  ">
-          <h1 className="text-[112px]  absolute top-[192px] bg-[#538c28] w-[1536px] flex justify-center rounded-xl">
+          <h1 className="text-[112px] absolute top-[192px] bg-[#538c28] w-[1536px] flex justify-center rounded-xl">
             {content[0].title[0]}
 
           </h1>
@@ -1160,8 +1157,8 @@ filterdata("വയനാട്",areaddata)
          
 
 
-          <div className="w-[100%] absolute top-[384px]">
-            <div className="px-[384px]  flex flex-col w-[100%]  h-[80vh] max-h-[80vh] overflow-y-hidden overflow-x-hidden">
+          <div className="w-[100%] absolute top-[24rem]">
+            <div className="px-[1344px]  flex flex-col w-[100%]  h-[80vh] max-h-[80vh] overflow-y-hidden overflow-x-hidden">
 
 
 

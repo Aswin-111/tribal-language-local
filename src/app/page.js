@@ -1186,7 +1186,7 @@ filterdata("വയനാട്",areaddata)
 
 
 
-<div className="px-[17vw] flex justify-center">
+<div className="px-[17vw] flex justify-center relative top-[-4vh]">
             <h1 className="w-[30vw] text-[2.6vh] py-5 bg-red-400 flex justify-center rounded-xl " onClick={()=>{
   setVideoToggle(false)
   setShowInfo(false)

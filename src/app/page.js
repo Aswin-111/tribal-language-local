@@ -265,10 +265,10 @@ filterdata("വയനാട്",areaddata)
   }
   return (
     // style = "max-width: 100vw;  max-height : 100%; overflow: hidden; padding:0; margin:0; background-color: dodgerblue; display: flex; justify-content: center; background-image: url('./plant.png'); background-repeat: no-repeat; background-size : cover; object-fit: cover; background-position: center;"
-    <div className="w-screen h-screen overflow-hidden p-0 m-0 bg-dodgerblue flex justify-center bg-[url('../../public/plant.png')] bg-no-repeat bg-cover bg-center">
+    <div className="filterforscreen w-screen h-screen overflow-hidden p-0 m-0 bg-dodgerblue flex justify-center bg-[url('../../public/plant.png')] bg-no-repeat bg-cover backdrop-opacity-100 bg-center backdrop-blur-xl">
       {/* style = "width: 100%; margin-top: 55px; height:100vh;" */}
       <div className="w-full mt-55px h-[100vh]">
-        <div className="text-[48px] absolute z-50 top-[5vh] w-full flex justify-center">
+        <div className="text-[2vh] absolute z-50 top-[5vh] w-full flex justify-center">
           Tribal Languages Of Kerala
         </div>
 
@@ -1121,11 +1121,11 @@ filterdata("വയനാട്",areaddata)
           </g>
         </svg>
 
-        {videotoggle && <div className="absolute z-50 top-[180px] w-full flex flex-col items-center px-32 ">
+        {videotoggle && <div className="absolute z-50 top-[11vh] w-full flex flex-col items-center px-[10vw] ">
 
 
 
-      {tribalvideourl.file && <video src={tribalvideourl.file} autoPlay={true} className="w-[1920px]" />}
+      {tribalvideourl.file && <video src={tribalvideourl.file} autoPlay={true} className="w-[80vw] " />}
 
 
 
@@ -1133,7 +1133,7 @@ filterdata("വയനാട്",areaddata)
 
 
 
-<div className="w-full flex justify-center text-[45px] bg-slate-400 px-24 mt-[160px] max-h-[40vh] rounded-xl overflow-y-scroll">
+<div className="w-full flex justify-center text-[1.6vh] bg-slate-400 px-24 mt-[4vh] max-h-[40vh] rounded-xl overflow-y-scroll">
 
 {tribalvideourl.desc}
 
@@ -1142,9 +1142,9 @@ filterdata("വയനാട്",areaddata)
 
 </div>
 {/* test  */}
-<div className="w-full flex justify-center px-[368px] mt-[112px] ">
+<div className="w-full flex justify-center px-[16vw] mt-[4vh] ">
 
-<h1 className="w-full text-[110px] py-5 bg-red-400 flex justify-center rounded-xl" onClick={()=>{
+<h1 className="w-[16vw] text-[1.6vh] h-[5vh] bg-red-400 flex justify-center items-center   rounded-xl" onClick={()=>{
   setVideoToggle(false)
   setShowInfo(true)
 }}>Close</h1>
@@ -1152,8 +1152,7 @@ filterdata("വയനാട്",areaddata)
 </div>
 </div>}
         {showinfo && <div className="absolute top-0 z-[70] w-full h-[100%] flex justify-center items-center  ">
-          {/* <h1 className="text-[112px]  absolute top-[192px] bg-[#538c28] w-[1536px] flex justify-center rounded-xl"> */}
-          <h1 className="text-[40px]  absolute top-[195px] bg-[#538c28] w-[900px] flex justify-center rounded-xl">
+          <h1 className="text-[2.6vh]  absolute top-[5vh] bg-[#538c28] w-[65vw] flex justify-center rounded-xl">
             {content[0].title[0]}
 
           </h1>
@@ -1161,16 +1160,15 @@ filterdata("വയനാട്",areaddata)
          
 
 
-          <div className="w-[100%] absolute top-[197px]">
-            <div className="px-[140px]  flex flex-col w-[100%]  h-[80vh] max-h-[80vh] overflow-y-hidden overflow-x-hidden">
-            {/* <div className="w-[100%] absolute top-[384px]">
-            <div className="px-[384px]  flex flex-col w-[100%]  h-[80vh] max-h-[80vh] overflow-y-hidden overflow-x-hidden"> */}
+          <div className="w-[100%] absolute top-[10vh]">
+            <div className="px-[17vw]  flex flex-col w-[100%]  h-[80vh] max-h-[80vh] overflow-y-hidden overflow-x-hidden">
+
 
 
               {content.map((i, key) => {
                 return (
-                  <div key={key} className="text-xl mt-[80px] w-[100%]">
-                    <h1 className="text-[40px] text-black w-[100%] border-2 border-black py-10 flex justify-center shadow-xl rounded-xl bg-white " onClick={() => {
+                  <div key={key} className=" mt-[3vh] w-[100%] flex justify-center">
+                    <h1 className="text-[1vh] text-black w-[30vw] border-2 border-black h-[5vh] flex justify-center items-center shadow-xl rounded-xl bg-white " onClick={() => {
                       setTribal({file : i.fileUrl, desc : i.description})
                       setVideoToggle(true)
 
@@ -1188,8 +1186,8 @@ filterdata("വയനാട്",areaddata)
 
 
 
-<div className="px-[180px] ">
-            <h1 className="w-full text-[80px] py-5 bg-red-400 flex justify-center rounded-xl " onClick={()=>{
+<div className="px-[17vw] flex justify-center">
+            <h1 className="w-[30vw] text-[2.6vh] py-5 bg-red-400 flex justify-center rounded-xl " onClick={()=>{
   setVideoToggle(false)
   setShowInfo(false)
 

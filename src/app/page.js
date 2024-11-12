@@ -2,8 +2,10 @@
 "use client"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import data from './arr'
-
+import backbtn from '../../public/back.png'
+import closebtn from '../../public/close.png'
+import Image from 'next/image'
+import toast, { Toaster } from "react-hot-toast"
 
 
 
@@ -19,6 +21,7 @@ export default function Home() {
   const [showinfo, setShowInfo] = useState(false);
 
   const [content, setContent] = useState(false);
+  const [districtPrompt, setDistrictPrompt] = useState(false);
 
 
   
@@ -106,7 +109,7 @@ export default function Home() {
     })
       console.log(arr);
 
-      if (arr &&   arr.filter(i => i === false).length !== arr.length ) {
+      if (arr.length > 0 &&   arr.filter(i => i === false).length !== arr.length ) {
 
 
         setShowInfo(true)
@@ -115,8 +118,25 @@ export default function Home() {
         setContent(arr)
       }
       else{
+        console.log('err')
+        setDistrictPrompt(true)
+
         
-        setInfoTog(true)
+        toast(`${target} - ആദിവാസി ഭാഷ ഇല്ല`,{
+
+        
+
+
+          style : {
+            position : "relative",
+            top : "5vh",
+            minWidth : "90vw",
+            minHeight : "10vh",
+            fontSize : "2vh",
+            borderRadius : "2vh"
+          }
+        }
+        )
       }
 
 
@@ -265,7 +285,7 @@ filterdata("വയനാട്",areaddata)
   }
   return (
     // style = "max-width: 100vw;  max-height : 100%; overflow: hidden; padding:0; margin:0; background-color: dodgerblue; display: flex; justify-content: center; background-image: url('./plant.png'); background-repeat: no-repeat; background-size : cover; object-fit: cover; background-position: center;"
-    <div className="filterforscreen w-screen h-screen overflow-hidden p-0 m-0 bg-dodgerblue flex justify-center bg-[url('../../public/plant.png')] bg-no-repeat bg-cover backdrop-opacity-100 bg-center backdrop-blur-xl">
+    <div className=" w-screen h-screen overflow-hidden p-0 m-0 bg-dodgerblue flex justify-center bg-[url('../../public/plant.png')] bg-no-repeat bg-cover backdrop-opacity-100 bg-center backdrop-blur-xl">
       {/* style = "width: 100%; margin-top: 55px; height:100vh;" */}
       <div className="w-full mt-55px h-[100vh]">
         <div className="text-[2vh] absolute z-50 top-[5vh] w-full flex justify-center">
@@ -1121,11 +1141,11 @@ filterdata("വയനാട്",areaddata)
           </g>
         </svg>
 
-        {videotoggle && <div className="absolute z-50 top-[11vh] w-full flex flex-col items-center px-[10vw] ">
+        {videotoggle && <div className="absolute z-50 top-[11vh] w-full flex flex-col items-center px-[5vw] ">
 
 
 
-      {tribalvideourl.file && <video src={tribalvideourl.file} autoPlay={true} className="w-[80vw] " />}
+      {tribalvideourl.file && <video src={tribalvideourl.file} autoPlay={true} className="w-[90vw] border-[0.2vh] border-white rounded-[3vh]" />}
 
 
 
@@ -1133,7 +1153,7 @@ filterdata("വയനാട്",areaddata)
 
 
 
-<div className="w-full flex justify-center text-[1.6vh] bg-slate-400 px-24 mt-[4vh] max-h-[40vh] rounded-xl overflow-y-scroll">
+<div className="w-full flex justify-center text-[1.3vh] text-slate-600   bg-green-300  px-24 mt-[4vh] max-h-[55vh] rounded-[1.6vh] overflow-y-scroll py-[2vh]">
 
 {tribalvideourl.desc}
 
@@ -1142,12 +1162,17 @@ filterdata("വയനാട്",areaddata)
 
 </div>
 {/* test  */}
-<div className="w-full flex justify-center px-[16vw] mt-[4vh] ">
+<div className="bg-slate-300   flex justify-center  absolute z-[55] right-[5vw] rounded-xl">
 
-<h1 className="w-[16vw] text-[1.6vh] h-[5vh] bg-red-400 flex justify-center items-center   rounded-xl" onClick={()=>{
+<h1 className="px-5 text-[1.6vh] py-5  flex justify-center items-center   rounded-xl" onClick={()=>{
   setVideoToggle(false)
   setShowInfo(true)
-}}>Close</h1>
+}}><Image
+
+src={closebtn}
+alt="close button"
+className = "w-[4vh]   h-[4vh]"
+/></h1>
 
 </div>
 </div>}
@@ -1186,12 +1211,17 @@ filterdata("വയനാട്",areaddata)
 
 
 
-<div className="px-[17vw] flex justify-center relative top-[-5vh]">
-            <h1 className="w-[30vw] text-[2vh]     h-[5vh]  bg-red-400 flex justify-center items-center rounded-xl " onClick={()=>{
+<div className="px-[2vw] flex justify-center absolute top-[3vh] left-[16vw] z-[55]">
+            <h1 className="w-[10vw] text-[2vh]   bg-white   h-[5vh]  flex justify-center items-center rounded-xl " onClick={()=>{
   setVideoToggle(false)
   setShowInfo(false)
 
-}}>Close</h1>
+}}><Image
+
+src={backbtn}
+alt="back button"
+className = "w-[4vh]   h-[4vh]"
+/></h1>
 
 
 
@@ -1203,6 +1233,9 @@ filterdata("വയനാട്",areaddata)
           </div>
         </div>}
 
+<div>
+  <Toaster/>
+</div>
 
 
 

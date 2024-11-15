@@ -37,6 +37,42 @@ export default function Home() {
   const [type, setType] = useState("=1");
 
   useEffect(() => {
+    let inactivityTimer;
+    
+    const resetTimer = () => {
+      if (inactivityTimer) {
+        clearTimeout(inactivityTimer);
+      }
+      inactivityTimer = setTimeout(() => {
+        window.location.reload();
+      }, 300000); // 5 minutes
+    };
+    
+    const activityEvents = [
+      'mousedown',
+      'mousemove',
+      'keydown',
+      'scroll',
+      'touchstart',
+      'touchmove'
+    ];
+    
+    activityEvents.forEach(event => {
+      document.addEventListener(event, resetTimer);
+    });
+    
+    resetTimer();
+    
+    return () => {
+      if (inactivityTimer) {
+        clearTimeout(inactivityTimer);
+      }
+      activityEvents.forEach(event => {
+        document.removeEventListener(event, resetTimer);
+      });
+    };
+  }, []);
+  useEffect(() => {
 
 
 

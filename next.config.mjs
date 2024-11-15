@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    distDir: process.env.NEXT_PUBLIC_DIST // Specify your custom build directory here
+};
 
-export default nextConfig;
+module.exports = nextConfig;

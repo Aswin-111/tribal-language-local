@@ -1181,8 +1181,13 @@ filterdata("വയനാട്",areaddata)
 
 
 
-      {tribalvideourl.file && <video src={tribalvideourl.file} autoPlay={true} className="w-[90vw] border-[0.2vh] border-white rounded-[3vh]" />}
-
+      {/* {tribalvideourl.file && <video src={tribalvideourl.file} autoPlay={true} className="w-[90vw] border-[0.2vh] border-white rounded-[3vh]" />} */}
+      {tribalvideourl.file && (
+    <video controls autoPlay className="w-[90vw] border-[0.2vh] border-white rounded-[3vh]">
+        <source src={tribalvideourl.file} type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+)}
 
 
 
@@ -1231,10 +1236,13 @@ className = "w-[4vh]   h-[4vh]"
                   <div key={key} className=" mt-[3vh] w-[100%] flex justify-center">
                     <h1 className="text-[1vh] text-black w-[30vw] border-2 border-black h-[5vh] flex justify-center items-center shadow-xl rounded-xl bg-white " onClick={() => {
                       setTribal({file : i.fileUrl, desc : i.description})
+
+                      console.log(i.fileUrl)
                       setVideoToggle(true)
-
-
                       
+                    
+
+
                     
                 
                 setShowInfo(false)

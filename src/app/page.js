@@ -98,7 +98,7 @@ export default function Home() {
         if (i.title && i != undefined) {
           return {
             title: i.title.trim().split("-"),
-            commonId: i.tribalCommonId, fileUrl: i.tribalVideoList ? i.tribalVideoList[0].fileUrl : null, description: i.description
+            commonId: i.tribalCommonId, fileName: i.tribalVideoList ? i.tribalVideoList[0].fileName : null, description: i.description
           }
         }
 
@@ -1255,7 +1255,7 @@ console.log(i)
                      
                      
                      
-                     let link = i.fileName.includes(" ") ? i.fileUrl.split(" ").join("%20") : i.fileName;
+                     let link = i.fileName.includes(" ") ? i.fileName.split(" ").join("%20") : i.fileName;
 
                      setTribal({ file: `${process.env.NEXT_PUBLIC_VIDEO_URL}/${link}`, desc: i.description })
 

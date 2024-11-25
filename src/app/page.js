@@ -109,7 +109,7 @@ export default function Home() {
           // console.log(i)
           // console.log(i && i.title != undefined)
           if (i && i.title != undefined) {
-            return { title: i.title.length >= 2 ? [i.title[0].toLowerCase().trim(), i.title[1].toLowerCase().trim()] : [i.title[0].toLowerCase().trim()], commonId: i.commonId, fileUrl: i.fileUrl, description: i.description }
+            return { title: i.title.length >= 2 ? [i.title[0].toLowerCase().trim(), i.title[1].toLowerCase().trim()] : [i.title[0].toLowerCase().trim()], commonId: i.commonId, fileName: i.fileName, description: i.description }
           }
         }
 

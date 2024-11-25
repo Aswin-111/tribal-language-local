@@ -90,7 +90,8 @@ export default function Home() {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}${type}`)
       const data = response.data
       
-      console.log(data)
+      console.log(data,'data from backend')
+      console.log(process.env.NEXT_PUBLIC_BASE_URL,'env line 94')
       const fildata = data.map(i => {
 
 

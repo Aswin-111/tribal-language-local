@@ -1243,9 +1243,20 @@ export default function Home() {
                 return (
                   <div key={key} className=" mt-[3vh] w-[100%] flex justify-center">
                     <h1 className="text-[1vh] text-black w-[30vw] border-2 border-black h-[5vh] flex justify-center items-center shadow-xl rounded-xl bg-white " onClick={() => {
-                      setTribal({ file: i.fileUrl, desc: i.description })
+                     
+                     
+                     
 
-                      console.log(i.fileUrl)
+
+
+                     
+                     
+                     
+                     let link = i.fileName.includes(" ") ? i.fileUrl.split(" ").join("%20") : i.fileName;
+
+                     setTribal({ file: `${process.env.NEXT_PUBLIC_VIDEO_URL}/${link}`, desc: i.description })
+
+                      // console.log(i.fileUrl)
                       setVideoToggle(true)
 
 

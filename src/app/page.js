@@ -167,7 +167,7 @@ export default function Home() {
 
 
 
-          duration: 800,
+          duration: 3000,
           style: {
             position: "relative",
             top: "5vh",

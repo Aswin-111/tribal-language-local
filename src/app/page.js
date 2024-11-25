@@ -1256,7 +1256,7 @@ console.log(i)
 
                      setTribal({ file: `${process.env.NEXT_PUBLIC_VIDEO_URL}/${link}`, desc: i.description })
 
-                      // console.log(i.fileUrl)
+                     
                       setVideoToggle(true)
 
 

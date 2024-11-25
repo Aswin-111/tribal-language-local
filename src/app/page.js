@@ -89,6 +89,8 @@ export default function Home() {
     (async function () {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}${type}`)
       const data = response.data
+      
+      console.log(data)
       const fildata = data.map(i => {
 
 

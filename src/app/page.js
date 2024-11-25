@@ -2,8 +2,8 @@
 "use client"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import backbtn from '../../public/back.png'
-import closebtn from '../../public/close.png'
+import backbtn from '../../public/back.svg'
+import closebtn from '../../public/close.svg'
 import Image from 'next/image'
 import toast, { Toaster } from "react-hot-toast"
 
@@ -14,9 +14,9 @@ import toast, { Toaster } from "react-hot-toast"
 
 
 export default function Home() {
-  
-  
-  
+
+
+
   const [areaddata, setAreaData] = useState([]);
   const [showinfo, setShowInfo] = useState(false);
 
@@ -24,7 +24,7 @@ export default function Home() {
   const [districtPrompt, setDistrictPrompt] = useState(false);
 
 
-  
+
   const [infotog, setInfoTog] = useState(false);
 
 
@@ -33,12 +33,13 @@ export default function Home() {
 
 
   const [videotoggle, setVideoToggle] = useState(false);
-  const [tribalvideourl, setTribal] = useState({file : "", desc : "" });
+  const [tribalvideourl, setTribal] = useState({ file: "", desc: "" });
+  const [languagetoggle, setLanguageToggle] = useState({ toggle : false, lang : "" });
   const [type, setType] = useState("=1");
 
   useEffect(() => {
     let inactivityTimer;
-    
+
     const resetTimer = () => {
       if (inactivityTimer) {
         clearTimeout(inactivityTimer);
@@ -47,7 +48,7 @@ export default function Home() {
         window.location.reload();
       }, 300000); // 5 minutes
     };
-    
+
     const activityEvents = [
       'mousedown',
       'mousemove',
@@ -56,13 +57,13 @@ export default function Home() {
       'touchstart',
       'touchmove'
     ];
-    
+
     activityEvents.forEach(event => {
       document.addEventListener(event, resetTimer);
     });
-    
+
     resetTimer();
-    
+
     return () => {
       if (inactivityTimer) {
         clearTimeout(inactivityTimer);
@@ -83,7 +84,7 @@ export default function Home() {
 
 
 
-    
+
 
     (async function () {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}${type}`)
@@ -91,85 +92,91 @@ export default function Home() {
       const fildata = data.map(i => {
 
 
-        if(i.title && i != undefined){
-        return {
-          title: i.title.trim().split("-"),
-          commonId: i.tribalCommonId, fileUrl: i.tribalVideoList ? i.tribalVideoList[0].fileUrl : null, description: i.description
+        if (i.title && i != undefined) {
+          return {
+            title: i.title.trim().split("-"),
+            commonId: i.tribalCommonId, fileUrl: i.tribalVideoList ? i.tribalVideoList[0].fileUrl : null, description: i.description
+          }
         }
-      }
 
       })
       // console.log(fildata) 
       let fil = fildata.map(i => {
-        try{
-        // console.log(i)
-// console.log(i && i.title != undefined)
-        if(i && i.title != undefined){
-        return { title: i.title.length >= 2 ? [ i.title[0].toLowerCase().trim(), i.title[1].toLowerCase().trim()] : [i.title[0].toLowerCase().trim()], commonId: i.commonId, fileUrl: i.fileUrl, description: i.description }
-        }
+        try {
+          // console.log(i)
+          // console.log(i && i.title != undefined)
+          if (i && i.title != undefined) {
+            return { title: i.title.length >= 2 ? [i.title[0].toLowerCase().trim(), i.title[1].toLowerCase().trim()] : [i.title[0].toLowerCase().trim()], commonId: i.commonId, fileUrl: i.fileUrl, description: i.description }
+          }
         }
 
-        catch(err){
+        catch (err) {
           console.log(err)
         }
-    
-    }
-    );
 
-     const filcp = fil.filter(i => i !== undefined);
+      }
+      );
 
-     
-     const kannurdata = filcp.map(i=>i.title[0] === "കണ്ണൂർ")
+      const filcp = fil.filter(i => i !== undefined);
+
+
+      const kannurdata = filcp.map(i => i.title[0] === "കണ്ണൂർ")
 
       setAreaData(filcp)
 
-      console.log(kannurdata,'fil')
+      console.log(kannurdata, 'fil')
 
     })()
   }, [])
 
 
-  
-  async function filterdata(target,areaddatacp){
-    
+
+  async function filterdata(target, areaddatacp) {
+
     try {
 
 
-      console.log(areaddatacp,'cp')
+      console.log(areaddatacp, 'cp')
       let arr = areaddatacp.filter(i => {
-        
+
 
         console.log(i.title[0].includes(target))
-       return i.title[0].includes(target)
+        return i.title[0].includes(target)
 
-    })
+      })
       console.log(arr);
 
-      if (arr.length > 0 &&   arr.filter(i => i === false).length !== arr.length ) {
+      if (arr.length > 0 && arr.filter(i => i === false).length !== arr.length) {
 
 
         setShowInfo(true)
 
 
         setContent(arr)
+
+        
       }
-      else{
+      else {
         console.log('err')
         setDistrictPrompt(true)
 
-        
-        toast(`${target} - ആദിവാസി ഭാഷ ഇല്ല`,{
 
-        
+        toast(`${target}`, {
 
 
-          style : {
-            position : "relative",
-            top : "5vh",
-            minWidth : "90vw",
-            minHeight : "10vh",
-            fontSize : "2vh",
-            borderRadius : "2vh"
+
+
+
+          duration: 800,
+          style: {
+            position: "relative",
+            top: "5vh",
+            minWidth: "65vw",
+            minHeight: "5vh",
+            fontSize: "2.6vh",
+            // borderRadius : "2vh",
+            backgroundColor: "#538c28",
+            color: "white"
           }
         }
         )
@@ -185,7 +192,7 @@ export default function Home() {
     // console.log("wayanad")  
 
 
-filterdata("വയനാട്",areaddata)
+    filterdata("വയനാട്", areaddata)
 
 
 
@@ -197,127 +204,127 @@ filterdata("വയനാട്",areaddata)
   }
   function kozhikode() {
     console.log("kozhikode")
-    
-    filterdata("കോഴിക്കോട്",areaddata)
 
-    
+    filterdata("കോഴിക്കോട്", areaddata)
+
+
   }
 
-    function kasargod() {
-    filterdata("കാസർഗോഡ്",areaddata)
+  function kasargod() {
+    filterdata("കാസർഗോഡ്", areaddata)
   }
   function kannur() {
-    
-    
-    
 
-    
-    
-    
-    filterdata("കണ്ണൂർ",areaddata)
+
+
+
+
+
+
+    filterdata("കണ്ണൂർ", areaddata)
   }
   function palakkad() {
-    console.log("palakkad",areaddata)
-    
+    console.log("palakkad", areaddata)
 
-    
-    
-    
-    filterdata("പാലക്കാട്",areaddata)
+
+
+
+
+    filterdata("പാലക്കാട്", areaddata)
   }
   function kollam() {
     console.log("kollam")
-    
-
-    
-    
-    
-    
-    
-    
-    
 
 
-    
-    
-    
-    filterdata("കൊല്ലം",areaddata)
+
+
+
+
+
+
+
+
+
+
+
+
+    filterdata("കൊല്ലം", areaddata)
   }
-  function te() {
-    console.log("te")
-    
+  function trivandrum() {
 
-    
-    
-    
-    filterdata("")
+
+
+
+
+    filterdata("തിരുവന്തപുരം", areaddata)
+
   }
   function thrissur() {
     console.log("thrissur")
-    
 
-    
-    
-    
-    filterdata("തൃശൂർ",areaddata)
+
+
+
+
+    filterdata("തൃശൂർ", areaddata)
   }
   function idukki() {
     console.log("idukki")
-    
 
-    
-    
-    
-    filterdata("ഇടുക്കി",areaddata)
+
+
+
+
+    filterdata("ഇടുക്കി", areaddata)
   }
   function pathanamthitta() {
     console.log("pathanamthitta")
-    
 
-    
-    
-    
-    filterdata("പത്തനംതിട്ട",areaddata)
+
+
+
+
+    filterdata("പത്തനംതിട്ട", areaddata)
   }
   function alappuzha() {
     console.log("alappuzha")
-    
 
-    
-    
-    
-  
 
-    filterdata("ആലപ്പുഴ",areaddata)
+
+
+
+
+
+    filterdata("ആലപ്പുഴ", areaddata)
 
   }
   function kottayam() {
     console.log("kottayam")
-    
 
-    
-    
-    
-    filterdata("കോട്ടയം",areaddata)
+
+
+
+
+    filterdata("കോട്ടയം", areaddata)
   }
   function ernakulam() {
     console.log("ernakulam")
-    
 
-    
-    
-    
-    filterdata("എറണാകുളം",areaddata)
+
+
+
+
+    filterdata("എറണാകുളം", areaddata)
   }
 
   function malappuram() {
     console.log("malappuram")
-    
 
-    
-    
-    
-    filterdata("മലപ്പുറം",areaddata)
+
+
+
+
+    filterdata("മലപ്പുറം", areaddata)
   }
   return (
     // style = "max-width: 100vw;  max-height : 100%; overflow: hidden; padding:0; margin:0; background-color: dodgerblue; display: flex; justify-content: center; background-image: url('./plant.png'); background-repeat: no-repeat; background-size : cover; object-fit: cover; background-position: center;"
@@ -325,7 +332,7 @@ filterdata("വയനാട്",areaddata)
       {/* style = "width: 100%; margin-top: 55px; height:100vh;" */}
       <div className="w-full mt-55px h-[100vh]">
         <div className="text-[2vh] absolute z-50 top-[5vh] w-full flex justify-center">
-          Tribal Languages Of Kerala
+        { languagetoggle.toggle ? languagetoggle.lang :'Tribal Languages Of Kerala'}
         </div>
 
 
@@ -1181,49 +1188,50 @@ filterdata("വയനാട്",areaddata)
 
 
 
-      {/* {tribalvideourl.file && <video src={tribalvideourl.file} autoPlay={true} className="w-[90vw] border-[0.2vh] border-white rounded-[3vh]" />} */}
-      {tribalvideourl.file && (
-    <video controls autoPlay className="w-[90vw] border-[0.2vh] border-white rounded-[3vh]">
-        <source src={tribalvideourl.file} type="video/mp4" />
-        Your browser does not support the video tag.
-    </video>
-)}
+          {/* {tribalvideourl.file && <video src={tribalvideourl.file} autoPlay={true} className="w-[90vw] border-[0.2vh] border-white rounded-[3vh]" />} */}
+          {tribalvideourl.file && (
+            <video controls autoPlay className="w-[90vw] border-[0.2vh] border-white rounded-[3vh]">
+              <source src={tribalvideourl.file} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
 
 
 
 
 
 
-<div className="w-full flex justify-center text-[1.3vh] text-slate-600   bg-green-300  px-24 mt-[4vh] max-h-[55vh] rounded-[1.6vh] overflow-y-scroll py-[2vh]">
+          <div className="w-full flex justify-center text-[1.3vh] text-slate-600   bg-green-300  px-24 mt-[4vh] max-h-[55vh] rounded-[1.6vh] overflow-y-scroll py-[2vh]">
 
-{tribalvideourl.desc}
-
-
+            {tribalvideourl.desc}
 
 
-</div>
-{/* test  */}
-<div className="bg-slate-300   flex justify-center  absolute z-[55] right-[5vw] rounded-xl">
 
-<h1 className="px-5 text-[1.6vh] py-5  flex justify-center items-center   rounded-xl" onClick={()=>{
-  setVideoToggle(false)
-  setShowInfo(true)
-}}><Image
 
-src={closebtn}
-alt="close button"
-className = "w-[4vh]   h-[4vh]"
-/></h1>
+          </div>
+          {/* test  */}
+          <div className="bg-slate-300   flex justify-center  absolute z-[55] right-[5vw] rounded-tr-[2vh]">
 
-</div>
-</div>}
+            <h1 className="px-5 text-[1.6vh] py-5  flex justify-center items-center   rounded-xl" onClick={() => {
+              setVideoToggle(false)
+              setShowInfo(true)
+              setLanguageToggle({toggle : false, lang : ""})
+            }}><Image
+
+                src={closebtn}
+                alt="close button"
+                className="w-[4vh]   h-[4vh] "
+              /></h1>
+
+          </div>
+        </div>}
         {showinfo && <div className="absolute top-0 z-[70] w-full h-[100%] flex justify-center items-center  ">
           <h1 className="text-[2.6vh]  absolute top-[5vh] bg-[#538c28] w-[65vw] flex justify-center rounded-xl">
             {content[0].title[0]}
 
           </h1>
 
-         
+
 
 
           <div className="w-[100%] absolute top-[10vh]">
@@ -1235,17 +1243,22 @@ className = "w-[4vh]   h-[4vh]"
                 return (
                   <div key={key} className=" mt-[3vh] w-[100%] flex justify-center">
                     <h1 className="text-[1vh] text-black w-[30vw] border-2 border-black h-[5vh] flex justify-center items-center shadow-xl rounded-xl bg-white " onClick={() => {
-                      setTribal({file : i.fileUrl, desc : i.description})
+                      setTribal({ file: i.fileUrl, desc: i.description })
 
                       console.log(i.fileUrl)
                       setVideoToggle(true)
+
+
+
+
+
+
+                      setShowInfo(false)
+
+
                       
-                    
+                      setLanguageToggle({toggle : true, lang : i.title[1]})
 
-
-                    
-                
-                setShowInfo(false)
                     }}>{i.title[1]}</h1>
                   </div>
                 )
@@ -1255,31 +1268,31 @@ className = "w-[4vh]   h-[4vh]"
 
 
 
-<div className="px-[2vw] flex justify-center absolute top-[3vh] left-[16vw] z-[55]">
-            <h1 className="w-[10vw] text-[2vh]   bg-white   h-[5vh]  flex justify-center items-center rounded-xl " onClick={()=>{
-  setVideoToggle(false)
-  setShowInfo(false)
+            <div className="px-[2vw] flex justify-center absolute top-[3vh] left-[16vw] z-[55]">
+              <h1 className="w-[10vw] text-[2vh]   bg-white   h-[5vh]  flex justify-center items-center rounded-xl " onClick={() => {
+                setVideoToggle(false)
+                setShowInfo(false)
 
-}}><Image
+              }}><Image
 
-src={backbtn}
-alt="back button"
-className = "w-[4vh]   h-[4vh]"
-/></h1>
+                  src={backbtn}
+                  alt="back button"
+                  className="w-[4vh]   h-[4vh]"
+                /></h1>
 
 
 
-</div>
+            </div>
 
-           
+
 
 
           </div>
         </div>}
 
-<div>
-  <Toaster/>
-</div>
+        <div>
+          <Toaster />
+        </div>
 
 
 

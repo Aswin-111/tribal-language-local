@@ -8,6 +8,15 @@
 let greet = function (name, msg) {
   console.log(` Hi ${name} ${msg}`);
 };
+
+let tab = "users";
+let attr = "name";
+let val = "seban";
+
+
+const sql = `select * from ${tab} where ${attr} = ${val}`
+
+
 // greet("seban", "hello good morning");
 
 function Sample(cb) {
@@ -40,3 +49,12 @@ let fn = (score) => score + 10;
 
 let mod_score = fn(6);
 console.log(mod_score);
+
+
+function req(name,lastname,...rest){
+    console.log(name);
+    console.log(lastname);
+    console.log(rest);
+}
+
+req("seban","andrews")

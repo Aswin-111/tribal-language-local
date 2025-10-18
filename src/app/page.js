@@ -88,9 +88,9 @@ export default function Home() {
               title:
                 i.title.length >= 2
                   ? [
-                      i.title[0].toLowerCase().trim(),
-                      i.title[1].toLowerCase().trim(),
-                    ]
+                    i.title[0].toLowerCase().trim(),
+                    i.title[1].toLowerCase().trim(),
+                  ]
                   : [i.title[0].toLowerCase().trim()],
               commonId: i.commonId,
               fileName: i.fileName,
@@ -179,7 +179,9 @@ export default function Home() {
     filterdata("കൊല്ലം", areaddata);
   }
   function trivandrum() {
-    filterdata("തിരുവനതപുരം", areaddata);
+    console.log("thiruvanathapuram");
+
+    filterdata("തിരുവനന്തപുരം", areaddata);
   }
   function thrissur() {
     console.log("thrissur");
